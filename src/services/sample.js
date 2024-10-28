@@ -12,11 +12,20 @@ export const sampleApi = createApi({
       query: (userId) => `posts?userId=${userId}`,
       providesTags: ['Post']
     }),
+    addPost: builder.mutation({
+      query: (newPost) => ({
+        url: `posts`,
+        method: 'POST',
+        body: newPost
+      }),
+      invalidatesTags: ['Post']
+    }),
   }),
 });
 
 export const { 
   useGetPostsQuery,
   useLazyGetPostsQuery,
-  useGetPostsByUserIdQuery
+  useGetPostsByUserIdQuery,
+  useAddPostMutation,
  } = sampleApi;
